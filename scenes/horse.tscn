@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://ch3pd6j1ugqo6"]
+
+[ext_resource type="Script" uid="uid://dlb013dibs3ie" path="res://scripts/horse.gd" id="1_lpili"]
+[ext_resource type="Texture2D" uid="uid://bo1af205vsr12" path="res://assets/rough/horse.png" id="2_42vyf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mwg8"]
+size = Vector2(15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_owkpo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_42vyf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="horse" type="CharacterBody2D" unique_id=1228639556]
+position = Vector2(3, -2)
+script = ExtResource("1_lpili")
+area_top_left = Vector2(60, 130)
+area_bottom_right = Vector2(400, 600)
+move_speed = 80.0
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=546184751]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_5mwg8")
+
+[node name="animations" type="AnimatedSprite2D" parent="." unique_id=1987520591]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_owkpo")
+animation = &"idle"
+
+[node name="second" type="Timer" parent="." unique_id=34238310]
+
+[connection signal="timeout" from="second" to="." method="__on_second_timeout"]
