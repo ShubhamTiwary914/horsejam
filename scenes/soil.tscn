@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://iiueb3xpv1y7"]
+
+[ext_resource type="Script" uid="uid://dvdih73ds27fc" path="res://scripts/soil.gd" id="1_glwfu"]
+[ext_resource type="Texture2D" uid="uid://cfretjcfbxomb" path="res://assets/rough/grass_plain.png" id="2_4hlqn"]
+[ext_resource type="Texture2D" uid="uid://tph3ub3mm5cs" path="res://assets/rough/soil_plain.png" id="2_261he"]
+[ext_resource type="Texture2D" uid="uid://broiv5um2abhp" path="res://assets/rough/soil_seeded_0.png" id="3_4hlqn"]
+[ext_resource type="Texture2D" uid="uid://dbod6dwkhyuxg" path="res://assets/rough/soil_seeded_1.png" id="4_lgp0g"]
+[ext_resource type="Texture2D" uid="uid://buredtcneh2y8" path="res://assets/rough/soil_seeded_2.png" id="5_6js2s"]
+[ext_resource type="Texture2D" uid="uid://d3g523i8mses2" path="res://assets/rough/soil_seeded_3.png" id="6_qi02l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ug3a4"]
+
+[node name="soil" type="Area2D" unique_id=1767511152]
+scale = Vector2(3, 3)
+script = ExtResource("1_glwfu")
+grassPlainSprite = ExtResource("2_4hlqn")
+soilPlainSprite = ExtResource("2_261he")
+soilSeededSprite0 = ExtResource("3_4hlqn")
+soilSeededSprite1 = ExtResource("4_lgp0g")
+soilSeededSprite2 = ExtResource("5_6js2s")
+soilSeededSprite3 = ExtResource("6_qi02l")
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=1931120864]
+scale = Vector2(0.7, 0.7)
+shape = SubResource("RectangleShape2D_ug3a4")
+
+[node name="sprite" type="Sprite2D" parent="." unique_id=631325059]
+texture_filter = 1
+
+[node name="timer" type="Timer" parent="." unique_id=215464189]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
