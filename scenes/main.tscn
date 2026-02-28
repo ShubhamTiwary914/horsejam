@@ -8,9 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://bb3buke2h42la" path="res://assets/rough/farm.png" id="5_o6xl0"]
 [ext_resource type="Script" uid="uid://cpsfq0gehamwm" path="res://scripts/hud.gd" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dvm5hyiu8m0qc" path="res://scenes/field_scene.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://b6a36gx0m2sv2" path="res://scenes/farm_scene.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://b3mybcuyx1e0i" path="res://scenes/shop_scene.tscn" id="10_choun"]
 
 [node name="main" type="Node2D" unique_id=279613967]
 script = ExtResource("1_0wfyh")
+fieldScene = ExtResource("8_tipki")
+farmScene = ExtResource("9_85g3d")
+shopScene = ExtResource("10_choun")
 
 [node name="ground" type="Sprite2D" parent="." unique_id=1953221024]
 position = Vector2(240.5, 357.99997)
@@ -54,8 +59,6 @@ offset_bottom = 68.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
-
-[node name="fieldScene" parent="." unique_id=352260655 instance=ExtResource("8_tipki")]
 
 [connection signal="pressed" from="HUD/prevbtn" to="." method="_on_prevbtn_pressed"]
 [connection signal="pressed" from="HUD/nextbtn" to="." method="_on_nextbtn_pressed"]

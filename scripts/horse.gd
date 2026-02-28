@@ -1,3 +1,4 @@
+class_name Horse
 extends CharacterBody2D
 
 @export var area_top_left: Vector2
@@ -11,9 +12,6 @@ extends CharacterBody2D
 @export var target_change_interval: int = 5
 @export var target_reach_threshold: float = 5.0
 @export var moveProbability_onturn : float = 0.6
-
-@onready var start_marker: Marker2D = $start
-@onready var end_marker: Marker2D = $end
 
 var age : int;
 var adult : bool;
@@ -62,6 +60,9 @@ func _grow_old() -> void:
 	if not adult and age >= adultAge_seconds:
 		adult = true
 		scale = Vector2(adult_scale, adult_scale)
+		
+func _setinit_position(pos: Vector2) -> void:
+	position = pos
 
 func _check_target_change() -> void:
 	target_change_counter -= 1
@@ -73,10 +74,8 @@ func _pick_new_target() -> void:
 	if age > 0: 
 		moveturn = randf() < moveProbability_onturn
 	if not moveturn:
-		print("not moving this turn")
 		return
 
-	print("moving now")
 
 	var min_x = min(area_top_left.x, area_bottom_right.x)
 	var max_x = max(area_top_left.x, area_bottom_right.x)

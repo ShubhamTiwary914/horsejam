@@ -27,6 +27,7 @@ move_speed = 80.0
 [node name="collision" type="CollisionShape2D" parent="." unique_id=546184751]
 position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_5mwg8")
+disabled = true
 
 [node name="animations" type="AnimatedSprite2D" parent="." unique_id=1987520591]
 texture_filter = 1
