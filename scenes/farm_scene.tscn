@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b6a36gx0m2sv2"]
+
+[ext_resource type="Script" uid="uid://d31qpj5wrtpdy" path="res://scripts/farms.gd" id="1_4o0t3"]
+[ext_resource type="PackedScene" uid="uid://iiueb3xpv1y7" path="res://scenes/soil.tscn" id="2_5t31c"]
+
+[node name="farmScene" type="Node2D" unique_id=699527082]
+script = ExtResource("1_4o0t3")
+soilScene = ExtResource("2_5t31c")

@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://by0qvp8we7n0p"]
+
+[ext_resource type="Script" uid="uid://bunbnh2yt03hx" path="res://scripts/main.gd" id="1_0wfyh"]
+[ext_resource type="Texture2D" uid="uid://cfh2ubuxy2u10" path="res://assets/rough/field.png" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://cv8cf8df3g4d0" path="res://scripts/ground.gd" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://1adds8tcdojb" path="res://assets/rough/bar.png" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://hfdtlwetgqp2" path="res://assets/rough/shop.png" id="3_tefeu"]
+[ext_resource type="Texture2D" uid="uid://bb3buke2h42la" path="res://assets/rough/farm.png" id="5_o6xl0"]
+[ext_resource type="Script" uid="uid://7nw8xlfodjjx" path="res://types/ItemData.gd" id="5_trceg"]
+[ext_resource type="Texture2D" uid="uid://4sjgufath811" path="res://assets/rough/hoe.png" id="6_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://b8qjyg0ng8wes" path="res://assets/rough/watercan.png" id="7_a8y0u"]
+[ext_resource type="Script" uid="uid://cpsfq0gehamwm" path="res://scripts/hud.gd" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://chl4cgip3vrg0" path="res://assets/rough/seeds.png" id="8_jkv2x"]
+[ext_resource type="PackedScene" uid="uid://dvm5hyiu8m0qc" path="res://scenes/field_scene.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://b6a36gx0m2sv2" path="res://scenes/farm_scene.tscn" id="9_85g3d"]
+[ext_resource type="Texture2D" uid="uid://bce33nqpb0h2" path="res://assets/rough/wheat.png" id="9_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://b3mybcuyx1e0i" path="res://scenes/shop_scene.tscn" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://dvwx3wp5q5lta" path="res://scenes/itemframe.tscn" id="11_ya4ey"]
+
+[sub_resource type="Resource" id="Resource_trceg"]
+script = ExtResource("5_trceg")
+itemtexture = ExtResource("6_a8y0u")
+metadata/_custom_type_script = "uid://7nw8xlfodjjx"
+
+[sub_resource type="Resource" id="Resource_jbj1t"]
+script = ExtResource("5_trceg")
+frameID = 2
+itemtexture = ExtResource("8_jkv2x")
+count = 5
+metadata/_custom_type_script = "uid://7nw8xlfodjjx"
+
+[sub_resource type="Resource" id="Resource_jkv2x"]
+script = ExtResource("5_trceg")
+frameID = 1
+itemtexture = ExtResource("7_a8y0u")
+metadata/_custom_type_script = "uid://7nw8xlfodjjx"
+
+[sub_resource type="Resource" id="Resource_muem4"]
+script = ExtResource("5_trceg")
+frameID = 3
+itemtexture = ExtResource("9_jbj1t")
+count = 3
+metadata/_custom_type_script = "uid://7nw8xlfodjjx"
+
+[sub_resource type="Resource" id="Resource_dp3eg"]
+script = ExtResource("5_trceg")
+itemtexture = ExtResource("9_jbj1t")
+count = 3
+metadata/_custom_type_script = "uid://7nw8xlfodjjx"
+
+[node name="main" type="Node2D" unique_id=279613967]
+script = ExtResource("1_0wfyh")
+fieldScene = ExtResource("8_tipki")
+farmScene = ExtResource("9_85g3d")
+shopScene = ExtResource("10_choun")
+farmSceneDefaultHotbar = Dictionary[String, ExtResource("5_trceg")]({
+"hoe": SubResource("Resource_trceg"),
+"seeds": SubResource("Resource_jbj1t"),
+"water": SubResource("Resource_jkv2x"),
+"wheat": SubResource("Resource_muem4")
+})
+fieldsSceneDefaultHotbar = Dictionary[String, ExtResource("5_trceg")]({
+"wheat": SubResource("Resource_dp3eg")
+})
+
+[node name="ground" type="Sprite2D" parent="." unique_id=1953221024]
+position = Vector2(240.5, 357.99997)
+scale = Vector2(1.0770833, 1.0666666)
+script = ExtResource("3_jyhfs")
+shop = ExtResource("3_tefeu")
+field = ExtResource("1_o5qli")
+farm = ExtResource("5_o6xl0")
+
+[node name="topbar" type="Sprite2D" parent="." unique_id=1825951988]
+position = Vector2(232, 23)
+texture = ExtResource("3_sugp2")
+
+[node name="botbar" type="Sprite2D" parent="." unique_id=1785361411]
+position = Vector2(240, 694)
+texture = ExtResource("3_sugp2")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1455397349]
+script = ExtResource("7_o6xl0")
+itemframeScene = ExtResource("11_ya4ey")
+
+[node name="prevbtn" type="Button" parent="HUD" unique_id=553559796]
+offset_left = 27.0
+offset_top = 28.0
+offset_right = 72.0
+offset_bottom = 59.0
+text = "Prev"
+
+[node name="nextbtn" type="Button" parent="HUD" unique_id=1826626509]
+offset_left = 406.0
+offset_top = 27.0
+offset_right = 451.0
+offset_bottom = 58.0
+text = "Next
+"
+
+[node name="sceneLabel" type="Label" parent="HUD" unique_id=1622137223]
+offset_left = 150.0
+offset_top = 23.0
+offset_right = 328.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="hotbar" type="Node2D" parent="HUD" unique_id=1920434505]
+position = Vector2(69, 673)
+
+[connection signal="pressed" from="HUD/prevbtn" to="." method="_on_prevbtn_pressed"]
+[connection signal="pressed" from="HUD/nextbtn" to="." method="_on_nextbtn_pressed"]
