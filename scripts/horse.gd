@@ -56,7 +56,6 @@ func _born() -> void:
 	
 func _grow_old() -> void:	
 	age += 1
-	print(age)
 	if not adult and age >= adultAge_seconds:
 		adult = true
 		scale = Vector2(adult_scale, adult_scale)

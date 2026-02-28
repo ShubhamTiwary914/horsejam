@@ -20,9 +20,6 @@ func _spawn_soil_at(pos: Vector2) -> void:
 	soil.position = pos
 	soil.set_soilID(soils.size())
 
-	soil.plant.connect(_on_soil_plant)
-	soil.harvest.connect(_on_soil_harvest)
-	soil.water.connect(_on_soil_water)
 	add_child(soil)
 	soils.append(soil)
 	
@@ -41,11 +38,3 @@ func _generate_soil_grid() -> void:
 		)
 		_spawn_soil_at(pos)
 		
-func _on_soil_plant(id: int) -> void:
-	pass
-
-func _on_soil_harvest(id: int) -> void:
-	pass
-
-func _on_soil_water(id: int) -> void:
-	pass

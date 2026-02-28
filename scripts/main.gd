@@ -5,12 +5,18 @@ extends Node2D
 @export var farmScene: PackedScene
 @export var shopScene: PackedScene
 
+#map item-name to frameID, itemtexture
+@export var farmSceneDefaultHotbar: Dictionary[String, ItemData]
+@export var fieldsSceneDefaultHotbar: Dictionary[String, ItemData]
+
 var currentSceneInstance: Node2D = null
 
 func _ready() -> void:
 	$ground.set_ground_by_id(sceneID)
-	$HUD.sceneChange(sceneID)
-	moveScene(0)
+	$HUD.change_scene(sceneID)
+	moveScene(0) 
+	$HUD.init_hotbar(1, fieldsSceneDefaultHotbar)
+	$HUD.init_hotbar(2, farmSceneDefaultHotbar)
 
 func moveScene(step: int) -> void:
 	sceneID += step
@@ -20,7 +26,7 @@ func moveScene(step: int) -> void:
 		sceneID = (0) if (sceneID<0) else (sceneID)
 		return
 	$ground.set_ground_by_id(sceneID)
-	$HUD.sceneChange(sceneID)
+	$HUD.change_scene(sceneID)
 	match sceneID:
 		0:
 			setSceneObject(shopScene)
@@ -49,7 +55,6 @@ func setScene_farm() -> void:
 func setScene_shop() -> void:
 	pass
 	
-
 func _on_prevbtn_pressed() -> void:
 	moveScene(-1)
 
